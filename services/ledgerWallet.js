@@ -12,6 +12,7 @@ const foreach = (arr, callback) => {
 }
 
 
+
 module.exports = class LedgerWallet
 {
     
