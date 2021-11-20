@@ -4,7 +4,7 @@ const http = require('http');
 const https = require('https');
 const WebSocket = require('ws');
 const net = require('net');
-const fs=require('fs')
+const fs = require('fs')
 const {BrowserWindow} =require('electron')
 let mainWindow;
 const sendToEmbed = async(payload) =>{
@@ -291,8 +291,8 @@ class HighLevelSockets {
 
 	static async initialize(){
 		const certs ={
-            key: fs.readFileSync('src-electron/cert/key.pem'),
-            cert:fs.readFileSync('src-electron/cert/cert.pem')
+            key: fs.readFileSync('./cert/key.pem'),
+            cert:fs.readFileSync('./cert/cert.pem')
           };
 		return sockets.initialize(certs);
 	}
