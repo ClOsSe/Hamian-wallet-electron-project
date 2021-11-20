@@ -1,6 +1,6 @@
 const { Api, JsonRpc, RpcError } = require('eosjs');
 const { JsSignatureProvider } = require('eosjs/dist/eosjs-jssig');      // development only
-const fetch = require('fetch');                                    // node only; not needed in browsers
+const fetch = require('node-fetch');                                    // node only; not needed in browsers
 const { TextEncoder, TextDecoder } = require('util'); 
 var url='https://mainnet.persiantelos.com'
 const ecc = require('eosjs-ecc');
