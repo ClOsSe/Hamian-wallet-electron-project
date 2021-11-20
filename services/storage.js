@@ -3,6 +3,7 @@ const fs =require('fs');
 var aesjs = require('aes-js');
 var pbkdf2 = require('pbkdf2');
 const {app} = require('electron');
+const { Console } = require('console');
 
 const Hamian_Setting = 'setting';
 var stores={};
@@ -88,8 +89,7 @@ module.exports = class Storage{
         var encryptedBytes = aesCtr.encrypt(textBytes);
         var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
         const path = `${app.getPath('userData')}/data.json`; 
-        fs.writeFileSync(path,encryptedHex)
-
+        fs.writeFileSync(path,encryptedHex);
     }   
     
     async addToJson(name,key,data)
