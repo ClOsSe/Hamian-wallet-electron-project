@@ -56,7 +56,7 @@ function createWindow () {
   HighLevelSockets.setMainWindow(mainWindow);
   HighLevelSockets.initialize() 
 //   var address=process.env.APP_URL+'?globalid=main'; 
-  var address='http://localhost:8080/'; 
+  var address='http://localhost:8080/'+'?globalid=main';
   mainWindow.loadURL(address)
   global.windows['main']=mainWindow;
   mainWindow.on('closed', () => {
