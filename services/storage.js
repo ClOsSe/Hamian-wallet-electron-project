@@ -102,7 +102,6 @@ module.exports = class Storage{
     }
     async getFromJson(name,key)
     {
-         
         return store.get(name+'.'+key); 
     }
     async deleteFromJson(name,key)
@@ -113,6 +112,28 @@ module.exports = class Storage{
     async getAllFromJson(name)
     {
         store.get(name+'.'+key); 
+    }
+    async saveSelectedAccount(account)
+    {
+        await global.gclass.storage.addToJson('selectedAccount',account.chainId,account.name);
+        // return {message:true}
+    }
+    async getSelectedAccount(chainId)
+    {
+        
+        await global.gclass.storage.getFromJson('selectedAccount',chainId.chainId)
+        // return {message:true}
+    }
+    async saveSelectedNode(node){
+        await global.gclass.storage.addToJson('selectedNode',node.chainId,node.name);
+        
+        // this.addToJson('selectedNode',node.chainId,node.name);
+        // return {message:true}
+    }
+    async getSelectedNode(chainId)
+    {
+        // console.log('selectedNode',await this.getFromJson('selectedNode',chainId.chainId))
+        return await global.gclass.storage.getFromJson('selectedNode',chainId.chainId)
     }
     
 
