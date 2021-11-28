@@ -175,6 +175,7 @@ class LowLevelSocketService {
 			socket.on('disconnect', () => delete this.openConnections[origin+id]);
 
 			socket.on('message', msg => {
+				msg=msg+'';
 				if(msg.indexOf('42/scatter') === -1) return false;
 				const [type, request] = JSON.parse(msg.replace('42/scatter,', ''));
 
