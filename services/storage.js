@@ -116,26 +116,31 @@ module.exports = class Storage{
     async saveSelectedAccount(account)
     {
         await global.gclass.storage.addToJson('selectedAccount',account.chainId,account.name);
-        // return {message:true}
+        let isTrue = await global.gclass.storage.getFromJson('selectedAccount',account.chainId)
+        if(isTrue){
+            return {message:true}
+        }
+
     }
     async getSelectedAccount(chainId)
     {
-        
-        await global.gclass.storage.getFromJson('selectedAccount',chainId.chainId)
-        // return {message:true}
+        let data = await global.gclass.storage.getFromJson('selectedAccount',chainId)
+        if(data){
+            return {message:data}
+        }
     }
     async saveSelectedNode(node){
         await global.gclass.storage.addToJson('selectedNode',node.chainId,node.name);
-        
-        // this.addToJson('selectedNode',node.chainId,node.name);
-        // return {message:true}
+        let data = await global.gclass.storage.getFromJson('selectedNode',node.chainId)
+        if(data){
+            return {message:true}
+        }
     }
     async getSelectedNode(chainId)
     {
-        // console.log('selectedNode',await this.getFromJson('selectedNode',chainId.chainId))
-        return await global.gclass.storage.getFromJson('selectedNode',chainId.chainId)
+        let data = await global.gclass.storage.getFromJson('selectedNode',chainId)
+        if(data){
+            return {message:data}
+        }
     }
-    
-
-    
 }
