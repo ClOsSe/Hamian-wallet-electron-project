@@ -92,22 +92,42 @@ const sendToEmbed = async(payload) =>{
 				return
 			}
 			var id=payload.request.data.id;
+			// var wind = new BrowserWindow({
+			// 	width: 500, 
+			// 	height: 700,
+			// 	useContentSize: true,
+			// 	webPreferences: { 
+			// 	  nodeIntegration: process.env.QUASAR_NODE_INTEGRATION,
+			// 	  nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION, 
+			// 	}
+			//   }) 
 			var wind = new BrowserWindow({
-				width: 500, 
-				height: 700,
+				width: 700, 
+				height: 900,
 				useContentSize: true,
-				webPreferences: { 
-				  nodeIntegration: process.env.QUASAR_NODE_INTEGRATION,
-				  nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION, 
+				webPreferences: {
+				  // Change from /quasar.conf.js > electron > nodeIntegration;
+				  // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
+				  // nodeIntegration: process.env.QUASAR_NODE_INTEGRATION,
+				  nodeIntegration: true,
+				  // nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION,
+				  nodeIntegrationInWorker: true,
+				  contextIsolation: false,
+				  enableRemoteModule: true,
+			
+				  // More info: /quasar-cli/developing-electron-apps/electron-preload-script
+				  // preload: path.resolve(__dirname, 'electron-preload.js')
 				}
-			  }) 
+			  })
+			
 			  var id=Math.random().toString();
 			  global.windows[id]=wind;
 			  console.log('id: ',id)
 			  	wind.on('closed', () => { 
 					delete global.windows[id];
 				}) 
-			  wind.loadURL(process.env.APP_URL+'?globalid='+id+'#/LocalLogin')
+			//   wind.loadURL(process.env.APP_URL+'?globalid='+id+'#/LocalLogin')
+			  wind.loadURL('http://localhost:8080/LocalLogin'+'?globalid='+id)
 			  setTimeout(()=>{
 
 				  wind.webContents.send('socketResponse', payload);
