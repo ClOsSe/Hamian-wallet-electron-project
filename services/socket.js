@@ -107,7 +107,7 @@ const sendToEmbed = async(payload) =>{
 			  	wind.on('closed', () => { 
 					delete global.windows[id];
 				}) 
-			  wind.loadURL(process.env.APP_URL+'?globalid='+id+'#/login/local')
+			  wind.loadURL(process.env.APP_URL+'?globalid='+id+'#/LocalLogin')
 			  setTimeout(()=>{
 
 				  wind.webContents.send('socketResponse', payload);
